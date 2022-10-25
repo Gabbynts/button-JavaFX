@@ -18,29 +18,31 @@ public class App extends Application {
         Button btn2 = new Button();
         
         btn.setText("Hi! Click Here ^.^");
-        btn2.setText("here");
         
-        VBox root = new VBox();
+        StackPane root = new StackPane();
         
         Label l = new Label("Button");
 
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
             public void handle(ActionEvent e){
-                l.setText("button selected");
-                //System.out.println("Here you are!");
-
-                // Group root = new Group();
+                btn.setDisable(true);
+                btn2.setText("There you are !!");
+                root.getChildren().add(btn2);
                 
-                // root.getChildren().remove(btn);
-                // root.getChildren().add(btn2);
             }
         };
-
         btn.setOnAction(event);
 
-        // root.getChildren().add(btn);
-        // root.getChildren().add(btn2);
-        root.getChildren().addAll(btn,l);
+        EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+                btn2.setDisable(true);
+                l.setText("Thankyou");
+                root.getChildren().add(l);
+            }
+        };
+        btn2.setOnAction(event2);
+
+        root.getChildren().add(btn);
 
         Scene scene = new Scene(root, 300, 250);
 
